@@ -5,8 +5,15 @@ void main() => runApp(const MaterialApp(
       home: IdCard(),
     ));
 
-class IdCard extends StatelessWidget {
+class IdCard extends StatefulWidget {
   const IdCard({super.key});
+
+  @override
+  State<IdCard> createState() => _IdCardState();
+}
+
+class _IdCardState extends State<IdCard> {
+  int ninjaLevel = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +29,19 @@ class IdCard extends StatelessWidget {
         backgroundColor: Colors.grey[850],
         elevation: 0.2,
         centerTitle: true,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            ninjaLevel += 1;
+          });
+        },
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.grey[850],
+        elevation: 0.0,
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(30.0, 40.0, 50.0, 0.0),
@@ -64,7 +84,7 @@ class IdCard extends StatelessWidget {
               height: 10.0,
             ),
             Text(
-              '4',
+              '$ninjaLevel',
               style: TextStyle(
                   color: Colors.amberAccent[200],
                   letterSpacing: 2.0,
